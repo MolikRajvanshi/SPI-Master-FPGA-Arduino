@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1350" width="100%" height="100%" style="background-color: #ffffff; font-family: Arial, Helvetica, sans-serif;">
+    <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#333333" />
+        </marker>
+        <marker id="arrow-reverse" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z" fill="#333333" />
+        </marker>
+        
+        <style>
+            .title { font-size: 22px; font-weight: bold; fill: #1565C0; }
+            .box-fpga { fill: #E3F2FD; stroke: #1565C0; stroke-width: 2; rx: 6; }
+            .box-external { fill: #E0F2F1; stroke: #00695C; stroke-width: 2; rx: 6; stroke-dasharray: 5, 5; }
+            .box-fsm { fill: #E8F5E9; stroke: #2E7D32; stroke-width: 2; rx: 6; }
+            .box-title { font-size: 15px; font-weight: bold; fill: #111; }
+            .box-text { font-size: 14px; fill: #333; }
+            .code-text { font-family: "Courier New", Courier, monospace; font-size: 13px; fill: #222; }
+            .line-label { font-size: 13px; fill: #444; font-weight: bold; }
+            .caption { font-size: 14px; font-style: italic; fill: #555; text-anchor: middle; }
+            .connection-line { stroke: #333333; stroke-width: 1.5; fill: none; }
+        </style>
+    </defs>
+
+    <text x="40" y="40" class="title">3.1 System Block Diagram</text>
+
+    <rect x="70" y="70" width="160" height="40" class="box-fpga" />
+    <text x="150" y="95" class="box-title" text-anchor="middle">SW[7:0]</text>
+    <path d="M 150 110 L 150 170" class="connection-line" marker-end="url(#arrow)" />
+    <text x="160" y="145" class="line-label">(8 DIP switches on Nexys 4 DDR)</text>
+
+    <rect x="70" y="170" width="220" height="60" class="box-fpga" />
+    <text x="180" y="195" class="box-title" text-anchor="middle">top.v</text>
+    <text x="180" y="215" class="box-text" text-anchor="middle">(Top-level wrapper)</text>
+
+    <rect x="420" y="170" width="220" height="60" class="box-fpga" />
+    <text x="530" y="190" class="box-title" text-anchor="middle">debounce.v</text>
+    <text x="530" y="215" class="box-text" text-anchor="middle">2-stage sync + 10 ms counter</text>
+    
+    <text x="530" y="130" class="box-title" text-anchor="middle">BTND</text>
+    <path d="M 530 135 L 530 170" class="connection-line" marker-end="url(#arrow)" />
+
+    <path d="M 420 200 L 300 200" class="connection-line" marker-end="url(#arrow)" />
+    <text x="360" y="190" class="line-label" text-anchor="middle">pulse_out</text>
+
+    <path d="M 180 230 L 180 310" class="connection-line" marker-end="url(#arrow)" />
+    <rect x="130" y="260" width="160" height="20" fill="#e0e0e0" rx="3" />
+    <text x="210" y="275" class="box-text" text-anchor="middle">start pulse (1 cycle)</text>
+
+    <rect x="50" y="310" width="260" height="100" class="box-fpga" />
+    <text x="180" y="335" class="box-title" text-anchor="middle">spi_master.v</text>
+    <text x="180" y="355" class="code-text" text-anchor="middle">FSM: IDLE, TRANSFER, FINISH</text>
+    <text x="180" y="375" class="code-text" text-anchor="middle">SCLK = 1 MHz (CLK_DIV=50)</text>
+    <text x="180" y="395" class="code-text" text-anchor="middle">Mode 0 (CPOL=0, CPHA=0)</text>
+
+    <rect x="700" y="310" width="240" height="100" class="box-external" />
+    <text x="820" y="355" class="box-title" text-anchor="middle">Arduino</text>
+    <text x="820" y="380" class="box-text" text-anchor="middle">(External Microcontroller)</text>
+
+    <path d="M 310 330 L 690 330" class="connection-line" marker-end="url(#arrow)" />
+    <text x="320" y="325" class="code-text">cs_n</text>
+    <text x="450" y="325" class="code-text">3.3 V --- direct to Arduino</text>
+
+    <path d="M 310 355 L 690 355" class="connection-line" marker-end="url(#arrow)" />
+    <text x="320" y="350" class="code-text">mosi</text>
+
+    <path d="M 310 380 L 690 380" class="connection-line" marker-end="url(#arrow)" />
+    <text x="320" y="375" class="code-text">sclk</text>
+
+    <path d="M 690 405 L 310 405" class="connection-line" marker-end="url(#arrow)" />
+    <text x="500" y="420" class="code-text" text-anchor="middle">miso &lt;-- Arduino pin 12 (via 1k+2k divider)</text>
+
+    <path d="M 180 410 L 180 490" class="connection-line" marker-end="url(#arrow)" />
+    <text x="190" y="455" class="line-label">done pulse (1 cycle)</text>
+
+    <rect x="50" y="490" width="400" height="70" class="box-fpga" />
+    <text x="130" y="520" class="box-title" text-anchor="middle">rx latch reg</text>
+    <text x="60" y="545" class="code-text">LED[15] = busy flag</text>
+    <text x="220" y="520" class="code-text">LED[7:0] = received byte</text>
+    <text x="220" y="545" class="code-text">(Arduino SW+1)</text>
+
+    <text x="50" y="600" class="code-text" font-weight="bold">PMOD JA Connections:</text>
+    <text x="50" y="620" class="code-text">JA1(C17)=CS_N   JA2(D18)=MOSI   JA3(E18)=MISO   JA4(G17)=SCLK</text>
+
+    <text x="500" y="660" class="caption">Figure 3.1 — System architecture: data flow from switches to FPGA SPI master to Arduino and back to LEDs</text>
+
+    <line x1="40" y1="690" x2="960" y2="690" stroke="#e0e0e0" stroke-width="2" />
+
+
+    <text x="40" y="730" class="title">3.3 SPI FSM Diagram</text>
+
+    <text x="500" y="760" class="box-text" text-anchor="middle">RST or power-on</text>
+    <path d="M 500 770 L 500 810" class="connection-line" marker-end="url(#arrow)" />
+
+    <rect x="400" y="810" width="200" height="80" class="box-fsm" />
+    <text x="500" y="835" class="box-title" text-anchor="middle">IDLE</text>
+    <text x="500" y="855" class="code-text" text-anchor="middle">cs_n=1, busy=0</text>
+    <text x="500" y="875" class="code-text" text-anchor="middle">sclk=0, mosi=0</text>
+
+    <path d="M 500 890 L 500 960" class="connection-line" marker-end="url(#arrow)" />
+    <text x="510" y="930" class="line-label">start pulse asserted</text>
+
+    <rect x="390" y="960" width="220" height="110" class="box-fsm" />
+    <text x="500" y="985" class="box-title" text-anchor="middle">TRANSFER</text>
+    <text x="500" y="1005" class="code-text" text-anchor="middle">cs_n=0, busy=1</text>
+    <text x="500" y="1025" class="code-text" text-anchor="middle">8 bits, MSB</text>
+    <text x="500" y="1045" class="code-text" text-anchor="middle">Rising: sample</text>
+    <text x="500" y="1065" class="code-text" text-anchor="middle">Falling: drive</text>
+
+    <path d="M 610 1000 L 670 1000 L 670 1050 L 620 1050" class="connection-line" marker-end="url(#arrow)" />
+    <text x="680" y="1030" class="code-text">(cnt &lt; CLK_DIV-1)</text>
+
+    <path d="M 500 1070 L 500 1150" class="connection-line" marker-end="url(#arrow)" />
+    <text x="510" y="1115" class="line-label">bit_cnt==7 &amp; falling edge</text>
+
+    <rect x="400" y="1150" width="200" height="90" class="box-fsm" />
+    <text x="500" y="1175" class="box-title" text-anchor="middle">FINISH</text>
+    <text x="500" y="1195" class="code-text" text-anchor="middle">cs_n=1, busy=0</text>
+    <text x="500" y="1215" class="code-text" text-anchor="middle">done=1 (1 cycle)</text>
+    <text x="500" y="1235" class="code-text" text-anchor="middle">rx_data &lt;= shift</text>
+
+    <path d="M 500 1240 L 500 1270 L 300 1270 L 300 850 L 390 850" class="connection-line" marker-end="url(#arrow)" />
+    <text x="345" y="1260" class="line-label" text-anchor="middle">IDLE</text>
+
+    <text x="500" y="1320" class="caption">Figure 3.2 — Three-state FSM: IDLE waits for start, TRANSFER shifts 8 bits, FINISH pulses done and returns to IDLE</text>
+
+</svg>
