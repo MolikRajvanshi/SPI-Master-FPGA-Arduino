@@ -380,7 +380,7 @@ The system was fully verified in hardware across multiple test iterations. The i
 | Name | Role |
 |---|---|
 | **Molik Rajvanshi** | Architecture, Verilog Design, FPGA Implementation, Verification |
-| **Ujjawal Khatri** | System Design, Arduino Firmware, Hardware Verification |
+| **Ujjawal Khatri** | System Design, Verilog, Arduino Firmware, Hardware Verification |
 
 ---
 
