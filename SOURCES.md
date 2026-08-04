@@ -21,7 +21,7 @@
 |---|---|---|---|
 | 5 | **Digilent Inc.** — *Nexys 4 DDR Reference Manual* | [reference.digilentinc.com/nexys4-ddr](https://reference.digilentinc.com/nexys4-ddr) | Pin mapping for Pmod JA expansion header, 100 MHz oscillator (pin E3), push buttons (`BTNC`, `BTND`), DIP switches (`SW0`-`SW7`), and LEDs (`LED0`-`LED15`). |
 | 6 | **Xilinx Inc.** — *7 Series FPGAs Data Sheet: Overview (DS180)* | [xilinx.com/.../ds180](https://www.xilinx.com/support/documentation/data_sheets/ds180_7Series_Overview.pdf) | Specifications for the Artix-7 XC7A100T-1CSG324C FPGA: LUT count (63,400), Flip-Flop count (126,800), max I/O toggle rates, and thermal parameters. |
-| 7 | **Microchip / Atmel** — *ATmega328P 8-bit AVR Microcontroller Datasheet* | [microchip.com](https://www.microchip.com) | Hardware SPI slave register configuration (`SPCR`, `SPSR`, `SPDR`), interrupt vector `ISR(SPI_STC_vect)`, and input voltage thresholds ($V_{IH} = 2.0\text{V}$). |
+| 7 | **Microchip / Atmel** — *ATmega328P 8-bit AVR Microcontroller Datasheet* | [microchip.com](https://www.microchip.com) | Hardware SPI slave register configuration (`SPCR`, `SPSR`, `SPDR`), interrupt vector `ISR(SPI_STC_vect)`, and input voltage thresholds (`V_IH = 2.0V`). |
 
 ---
 
