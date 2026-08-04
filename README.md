@@ -149,10 +149,14 @@ MISO   ____X____Q7___X____Q6___X____Q5___X____Q4___X____Q3___X____Q2___X____
 
 The Nexys 4 DDR FPGA I/O pins operate at **3.3V LVCMOS33** (maximum safe input voltage: 3.6V). The Arduino Uno outputs signals at **5V TTL logic**.
 
-- **FPGA Output Pins (`MOSI`, `SCLK`, `CS_N`)**: Connected directly from FPGA Pmod JA to Arduino pins 11, 13, and 10. The 3.3V HIGH level exceeds the Arduino ATmega328P minimum input high threshold ($V_{IH} = 2.0\text{V}$), ensuring reliable reception without level shifting.
+- **FPGA Output Pins (`MOSI`, `SCLK`, `CS_N`)**: Connected directly from FPGA Pmod JA to Arduino pins 11, 13, and 10. The 3.3V HIGH level exceeds the Arduino ATmega328P minimum input high threshold (`V_IH = 2.0V`), ensuring reliable reception without level shifting.
 - **Arduino MISO Pin (Arduino pin 12 -> FPGA JA pin 3)**: A passive voltage divider is inserted on the breadboard:
-  $$V_{\text{FPGA\_MISO}} = V_{\text{Arduino\_MISO}} \times \frac{R_2}{R_1 + R_2} = 5.0\text{V} \times \frac{2\text{ k}\Omega}{1\text{ k}\Omega + 2\text{ k}\Omega} \approx 3.33\text{V}$$
-  This safely steps down the 5V Arduino output to 3.33V before entering the FPGA.
+
+```
+V_MISO = V_Arduino * [ R2 / (R1 + R2) ] = 5.0V * [ 2kΩ / (1kΩ + 2kΩ) ] ≈ 3.33V
+```
+
+This safely steps down the 5V Arduino output to 3.33V before entering the FPGA.
 
 ---
 
