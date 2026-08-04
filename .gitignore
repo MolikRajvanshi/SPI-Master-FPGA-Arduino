@@ -1,0 +1,45 @@
+# ─── Vivado Project Files (regenerated on project open) ───
+*.jou
+*.log
+*.str
+*.xpr
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.srcs/
+*.gen/
+
+# ─── Bitstream (large binary, optional to include) ───
+# Uncomment the line below to exclude bitstreams:
+# *.bit
+# *.bin
+# *.ltx
+
+# ─── LaTeX / Report (not published) ───
+main.tex
+main_backup.tex
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.pdf
+
+# ─── Unused assets ───
+images/lnmiit_logo.png
+
+# ─── OS Files ───
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# ─── IDE ───
+.vscode/
+.idea/
